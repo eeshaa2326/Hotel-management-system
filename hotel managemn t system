@@ -1,0 +1,59 @@
+import java.util.*;
+
+class Hotel {
+    int roomNo;
+    String customerName;
+    int days;
+    double bill;
+
+    void input(Scanner sc) {
+        System.out.print("Room No: ");
+        roomNo = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Customer Name: ");
+        customerName = sc.nextLine();
+        System.out.print("Days Stayed: ");
+        days = sc.nextInt();
+        System.out.print("Bill Amount: ");
+        bill = sc.nextDouble();
+    }
+
+    void display() {
+        System.out.println(roomNo + " " + customerName + " " + days + " " + bill);
+    }
+}
+
+public class HotelManagement {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Hotel> list = new ArrayList<>();
+        int ch;
+
+        do {
+            System.out.println("\n1.Add 2.Display 3.Search 4.Delete 5.Exit");
+            ch = sc.nextInt();
+
+            switch (ch) {
+                case 1:
+                    Hotel h = new Hotel();
+                    h.input(sc);
+                    list.add(h);
+                    break;
+                case 2:
+                    for (Hotel h1 : list) h1.display();
+                    break;
+                case 3:
+                    System.out.print("Enter Room No: ");
+                    int r = sc.nextInt();
+                    for (Hotel h1 : list)
+                        if (h1.roomNo == r) h1.display();
+                    break;
+                case 4:
+                    System.out.print("Enter Room No: ");
+                    int d = sc.nextInt();
+                    list.removeIf(h1 -> h1.roomNo == d);
+                    break;
+            }
+        } while (ch != 5);
+    }
+}
